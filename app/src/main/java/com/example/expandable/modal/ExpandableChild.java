@@ -1,4 +1,4 @@
-package com.example.expandable;
+package com.example.expandable.modal;
 
 
 import com.example.expandable.widget.ExpandableAttribute;
@@ -8,17 +8,17 @@ import com.example.expandable.widget.ExpandableAttribute;
  */
 
 public class ExpandableChild extends ExpandableAttribute {
+    private String name;
 
     public ExpandableChild(int resourceId) {
         super(resourceId);
     }
 
-
-    public void setValue(Object object) {
-        this.object = object;
+    public void setValue(String name) {
+        this.name = name;
     }
 
-    public Object getValue() {
-        return object;
+    public String getValue() {
+        return name;
     }
 }
