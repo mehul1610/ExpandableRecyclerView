@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 
 public abstract class ExpandableAttribute implements ExpandableProperty {
-    protected Object object;
     private boolean isExpand = true;
     private boolean hasChild;
     private boolean doNotCollapse = false;
@@ -76,9 +75,16 @@ public abstract class ExpandableAttribute implements ExpandableProperty {
         expandableChildren.add(child);
     }
 
+    public void removeChild(ExpandableAttribute child) {
+        if (expandableChildren != null) {
+            expandableChildren.remove(child);
+            hasChild = !expandableChildren.isEmpty();
+        }
+    }
+
     private int getCount(ExpandableAttribute child) {
         int i = 0;
-        if (child.hasChild && child.isExpand) {
+        if (child.hasChild && child.isExpand && child.getChildren() != null) {
             for (ExpandableAttribute expandableChild : child.getChildren())
                 i += getCount(expandableChild);
             return i + child.getChildren().size();
@@ -91,7 +97,7 @@ public abstract class ExpandableAttribute implements ExpandableProperty {
     }
 
     private void getChild(ExpandableAttribute attribute, boolean isExpand) {
-        if (attribute.hasChild) {
+        if (attribute.hasChild && attribute.getChildren() != null) {
             for (ExpandableAttribute child : attribute.getChildren()) {
                 getChild(child, isExpand);
             }

@@ -20,8 +20,4 @@ public interface ExpandableProperty {
     void doNotCollapse();
 
     boolean isDoNotCollapse();
-
-    void setValue(Object value);
-
-    Object getValue();
 }
