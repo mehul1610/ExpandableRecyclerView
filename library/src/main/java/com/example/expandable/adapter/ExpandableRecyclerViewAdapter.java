@@ -47,9 +47,11 @@ public abstract class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter
                         if (attribute.isExpand()) {
                             setCollapse(attribute, holder.getAdapterPosition());
                             attribute.setExpand(false);
+                            holder.onCollapse(attribute);
                         } else {
                             attribute.setExpand(true);
                             setExpand(attribute, holder.getAdapterPosition());
+                            holder.onExpand(attribute);
                         }
                     }
                 }
